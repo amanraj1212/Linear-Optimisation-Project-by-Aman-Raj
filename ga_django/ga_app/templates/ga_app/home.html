@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Genetic Algorithm</title>
+    <style>
+        #loading {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .lds-ring {
+            display: inline-block;
+            position: relative;
+            width: 80px;
+            height: 80px;
+        }
+
+        .lds-ring div {
+            box-sizing: border-box;
+            display: block;
+            position: absolute;
+            width: 64px;
+            height: 64px;
+            margin: 8px;
+            border: 8px solid #3498db;
+            border-radius: 50%;
+            animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+            border-color: #3498db transparent transparent transparent;
+        }
+
+        @keyframes lds-ring {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        #footer {
+            background-color: #000;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        #footer a {
+            color: #fff;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <h2>Genetic Algorithm</h2>
+    <form method="post" action="{% url 'home' %}">
+        {% csrf_token %}
+        <label for="target">Target String:</label>
+        <input type="text" name="target" required><br>
+        <br>
+        <label for="mutation_rate">Mutation Rate:</label>
+        <input type="text" name="mutation_rate" required><br>
+        <br>
+        <label for="population_size">Population Size:</label>
+        <input type="text" name="population_size" required><br>
+        <br>
+        <label for="max_generations">Max Generations:</label>
+        <input type="text" name="max_generations" required><br>
+        <br>
+        <button type="submit" onclick="showLoading()">Run Genetic Algorithm</button>
+        <br>
+
+        <!-- Loading Animation -->
+        <div id="loading">
+            <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+            <p>Please wait, the algorithm is running...</p>
+        </div>
+
+    </form>
+
+    {% if result %}
+        <h3>Genetic Algorithm Result:</h3>
+        <h1><b>{{ result }}</b></h1>
+    {% endif %}
+    <h1><a href="github.com">Codebase and Project description</a></h1>
+    <!-- Footer -->
+    <div id="footer">
+        <p>&copy; Aman Raj 2024</p>
+        <p>
+            <a href="https://amanraj-website.netlify.app">Visit my Website</a>
+            <a href="https://www.linkedin.com/in/amanraj1212/">LinkedIn</a>
+            <a href="https://github.com/amanraj1212">Github</a>
+        </p>
+    </div>
+
+    <script>
+        function showLoading() {
+            document.getElementById('loading').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
